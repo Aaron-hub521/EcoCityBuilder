@@ -1,0 +1,236 @@
+/* Reset and Base Styles */
+body {
+    margin: 0;
+    padding-top: 15px; /* Keep top padding */
+    background-color: #222;
+    font-family: 'Press Start 2P', cursive;
+    min-height: 100vh; /* Ensure body takes full height */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column; /* Stack title and main content vertically */
+}
+
+#title-bar {
+    width: 100%; /* Make title bar full width */
+    padding: 10px 0; /* Vertical padding, no horizontal needed if text centered */
+    text-align: center;
+    font-size: 36px; /* Increased font size */
+    color: #4CAF50; /* Changed to grass green */
+    background-color: #333; /* Title bar background */
+    box-sizing: border-box;
+    flex-shrink: 0; /* Prevent title bar from shrinking */
+    border-bottom: 3px solid #888; /* Optional border */
+}
+
+#main-container {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch; /* Stretch items to fill height */
+    gap: 15px; /* Slightly reduce gap */
+    width: 100%; /* Occupy full width */
+    flex-grow: 1;
+    padding: 15px; /* Adjust padding */
+    box-sizing: border-box;
+    overflow: hidden;
+    max-height: 850px;/*调整边框高度*/
+}
+
+#left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 0 0 300px; /* Don't grow, don't shrink, base width 300px */
+    overflow: hidden; /* Prevent content overflow */
+}
+
+#game-container {
+    border: 5px solid #555;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    flex: 1 1 auto; /* Grow and shrink to take available space */
+    position: relative; /* Needed for absolute positioning of Phaser canvas? */
+    overflow: hidden; /* Important: Prevent canvas overflow */
+    min-width: 320px; /* Prevent it becoming too small */
+}
+
+#stats-panel {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 10px; /* Adjust padding */
+    border: 3px solid #888;
+    border-radius: 5px;
+    font-size: 12px; /* Adjust font size */
+    line-height: 1.5;
+    box-sizing: border-box;
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+#stats-panel p {
+    margin: 5px 0;
+}
+
+#stats-panel span {
+    font-weight: bold;
+    color: #4caf50; /* Green color for stats */
+}
+
+/* Style for the HTML Building Menu */
+#building-menu {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 10px;
+    border: 3px solid #888;
+    border-radius: 5px;
+    font-size: 10px;
+    line-height: 1.6;
+    width: 100%; /* Fit width of left-column */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    /* Remove max-height to allow filling space */
+    /* max-height: 550px; */ 
+    flex-grow: 1; /* Allow this element to grow and fill vertical space */
+    /* Add a min-height to prevent collapsing if content is very small */
+    min-height: 100px; 
+}
+
+.menu-item {
+    display: flex;
+    flex-direction: row; /* Changed from column */
+    align-items: center;
+    /* text-align: center; Removed */
+    cursor: pointer;
+    padding: 5px;
+    border: 1px solid transparent;
+    width: calc(50% - 5px);
+    box-sizing: border-box;
+    gap: 8px; 
+}
+
+.menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: #aaa;
+}
+
+.menu-item img {
+    width: 72px;  /* Increased from 48px */
+    height: 72px; /* Increased from 48px */
+    image-rendering: pixelated;
+    flex-shrink: 0;
+}
+
+.menu-item-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Changed from center */
+}
+
+.menu-item-details span:not(.menu-item-cost) {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 8px;
+    line-height: 1.1;
+    color: #fff;
+}
+
+.menu-item-cost {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 7px;
+    color: #FFD700 !important; /* Gold color - Add !important as a fallback if needed, but try without first*/
+    margin-top: 2px;
+    line-height: 1;
+}
+
+/* Style for the AI Advisor Panel */
+#ai-suggestions {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 10px; /* Adjust padding */
+    border: 3px solid #888;
+    border-radius: 5px;
+    font-size: 12px; /* Adjust font size */
+    line-height: 1.5;
+    flex: 0 0 300px; /* Decreased flex-basis by 150px */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Changed to hidden, internal elements scroll */
+    box-sizing: border-box;
+}
+
+#ai-suggestions h3 {
+    margin-top: 0;
+    font-size: 14px; /* Adjust font size */
+    text-align: center;
+    flex-shrink: 0;
+    margin-bottom: 8px; /* Add some space below title */
+}
+
+#suggestion-text {
+    overflow-y: auto;
+    max-height: 600; /* Increased max-height further, adjust as needed */
+    font-size: 12px; /* Decreased font size */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    padding: 5px; /* Adjusted padding */
+    margin-bottom: 10px; /* Added margin below text area */
+    background-color: #1a1a1a; /* Added distinct background */
+    border: 1px solid #444; /* Added border */
+}
+
+
+#ai-input-area {
+    display: flex;
+    margin-top: 8px; /* Adjust margin */
+    gap: 5px;
+    flex-shrink: 0;
+    align-items: center;
+}
+
+#ai-question-input {
+    flex-grow: 1;
+    padding: 6px;
+    border: 2px solid #888;
+    background-color: #fff;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    image-rendering: pixelated;
+}
+
+#send-ai-question {
+    padding: 6px 10px;
+}
+
+
+.pixel-button {
+    background-color: #555;
+    border: 2px solid #888;
+    color: white;
+    padding: 6px 10px; /* Adjust padding */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 11px; /* Adjust font size */
+    /*margin-top: 8px;  Adjust margin */
+    cursor: pointer;
+    font-family: 'Press Start 2P', cursive;
+    image-rendering: pixelated;
+}
+
+.pixel-button:hover {
+    background-color: #777;
+}
+
+/* Optional: Style for the building menu area */
+/* You might want a semi-transparent bar at the bottom */
+/* #building-menu {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(50, 50, 50, 0.8);
+    padding: 10px;
+    border: 2px solid #888;
+    border-radius: 5px;
+    display: flex;
+    gap: 10px;
+} */
